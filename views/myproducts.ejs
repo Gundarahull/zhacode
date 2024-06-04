@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Products</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+      }
+      .navbar {
+        background-color: #333;
+        padding: 10px 0;
+      }
+      .navbar-brand {
+        color: #fff;
+        font-size: 24px;
+      }
+      .navbar-nav {
+        margin-left: auto;
+      }
+      .nav-link {
+        color: #fff;
+        margin-left: 20px;
+      }
+      .nav-link:hover {
+        color: #ccc;
+      }
+      .container {
+        padding: 30px;
+      }
+      .product-card {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+      }
+      .product-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">My Account</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/postlogin/myproducts">My Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/postgetproduct">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cartitems">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/addAdsress">Address</a>
+      </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h3>My Products</h3>
+      <% if (getProducts.length > 0) { %>
+      <div class="row">
+        <% getProducts.forEach(product => { %>
+        <div class="col-md-4">
+          <div class="product-card">
+            <h4><%= product.productName %></h4>
+            <p><%= product.productDescription %></p>
+            <p>Price: $<%= product.productPrice %></p>
+            <div class="product-actions">
+              <a href="/editProduct/<%= product.id %>" class="btn btn-primary"
+                >Edit</a
+              >
+              <form
+                action="/deleteProduct/<%= product.id %>"
+                method="post"
+                style="display: inline"
+              >
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+              <form
+                action="/addToCart/<%= product.id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button type="submit" class="btn btn-success" id="alertcart">
+                  Add to Cart
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p>No products found.</p>
+      <% } %>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document.getElementById("alertcart").addEventListener("click", () => {
+        alert("ADD to CArt Successfully");
+      });
+    </script>
+  </body>
+</html>

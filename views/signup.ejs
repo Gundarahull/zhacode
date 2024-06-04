@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: rgb(25, 89, 114);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      nav {
+        width: 100%;
+        background-color: #333;
+        padding: 10px 0;
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        top: 0;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+        font-size: 28px;
+      }
+      .alert {
+        color: #fff;
+        background-color: #f44336; /* Red background for alert */
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        text-align: center;
+      }
+      .greenalert {
+        color: #fff;
+        background-color: #0ebb39; /* Red background for alert */
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        text-align: center;
+      }
+      .signup-container {
+        width: 100%;
+        max-width: 500px; /* Increased max-width for a bigger container */
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px; /* Increased padding for more space inside the container */
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .signup-header {
+        font-size: 24px;
+        font-weight: 500;
+        color: #212121;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .signup-form {
+        display: flex;
+        flex-direction: column;
+      }
+      .signup-form label {
+        font-size: 14px;
+        color: #212121;
+        margin-bottom: 5px;
+      }
+      .signup-form input {
+        height: 40px;
+        padding: 0 10px;
+        font-size: 14px;
+        border: 1px solid #dfe1e5;
+        border-radius: 4px;
+        margin-bottom: 15px;
+      }
+      .signup-form button {
+        height: 40px;
+        background-color: #fb641b;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .signup-form button:hover {
+        background-color: #e85918;
+      }
+      @media (max-width: 480px) {
+        .signup-container {
+          padding: 15px;
+        }
+        .signup-header {
+          font-size: 20px;
+        }
+        .signup-form label,
+        .signup-form input,
+        .signup-form button {
+          font-size: 12px;
+        }
+        .signup-form input {
+          height: 35px;
+        }
+        .signup-form button {
+          height: 35px;
+          font-size: 14px;
+        }
+        nav a {
+          font-size: 14px;
+          margin-right: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/login">Login</a>
+    </nav>
+    <div class="signup-container">
+      <div class="signup-header">Sign Up</div>
+
+      <% if (message) { %>
+      <div id="alert" class="greenalert"><%= message %></div>
+      <% } %>
+      <form class="signup-form" action="/signupPost" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+        <label for="useremail">Email</label>
+        <input type="email" id="useremail" name="useremail" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    setTimeout(function () {
+      var alertElement = document.getElementById("alert");
+      if (alertElement) {
+        alertElement.style.display = "none";
+      }
+    }, 2000);
+  </script>
+</html>
